@@ -1,0 +1,99 @@
+.career-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 80px 10%;
+  box-sizing: border-box;
+}
+
+.career-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.career-header h1 {
+  font-size: 42px;
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.career-header p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.career-form {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.career-form input,
+.career-form textarea {
+  padding: 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.career-form textarea {
+  resize: none;
+}
+
+.career-form button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.career-form button:hover {
+  background: #1d4ed8;
+}
+
+.career-result {
+  margin-top: 50px;
+}
+
+.career-result h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.result-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .career-page {
+    padding: 60px 5%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .career-page {
+    padding: 50px 20px;
+  }
+
+  .career-header h1 {
+    font-size: 30px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .career-header h1 {
+    font-size: 26px;
+  }
+}
