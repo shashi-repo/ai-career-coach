@@ -6,15 +6,19 @@ const jwt = require("jsonwebtoken");
 exports.register = (req, res) => {
   const { name, email, password } = req.body;
 
-  // Check if email already exists
   db.query(
     "SELECT * FROM users WHERE email = ?",
     [email],
     (err, result) => {
       if (err) {
+        console.error("REGISTER SELECT ERROR:", err);
+
         return res.status(500).json({
           message: "Database Error",
-          error: err,
+          code: err.code,
+          errno: err.errno,
+          sqlMessage: err.sqlMessage,
+          sqlState: err.sqlState,
         });
       }
 
@@ -27,19 +31,25 @@ exports.register = (req, res) => {
       const hash = bcrypt.hashSync(password, 10);
 
       db.query(
-        "INSERT INTO users (name,email,password) VALUES (?,?,?)",
+        "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
         [name, email, hash],
-        (err) => {
+        (err, insertResult) => {
           if (err) {
+            console.error("REGISTER INSERT ERROR:", err);
+
             return res.status(500).json({
               message: "Registration Failed",
-              error: err,
+              code: err.code,
+              errno: err.errno,
+              sqlMessage: err.sqlMessage,
+              sqlState: err.sqlState,
             });
           }
 
           res.status(201).json({
             success: true,
             message: "User registered successfully",
+            userId: insertResult.insertId,
           });
         }
       );
@@ -56,9 +66,14 @@ exports.login = (req, res) => {
     [email],
     (err, result) => {
       if (err) {
+        console.error("LOGIN ERROR:", err);
+
         return res.status(500).json({
           message: "Database Error",
-          error: err,
+          code: err.code,
+          errno: err.errno,
+          sqlMessage: err.sqlMessage,
+          sqlState: err.sqlState,
         });
       }
 
