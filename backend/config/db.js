@@ -14,11 +14,12 @@ const db = mysql.createPool({
 
 db.getConnection((err, connection) => {
   if (err) {
-    console.error("Database Connection Failed:", err.code, err.message);
-  } else {
-    console.log("MySQL Connected Successfully");
-    connection.release();
+    console.error("DB ERROR FULL:", err);
+    return;
   }
+
+  console.log("MySQL Connected Successfully");
+  connection.release();
 });
 
 module.exports = db;
